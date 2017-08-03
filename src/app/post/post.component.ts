@@ -18,4 +18,10 @@ export class PostComponent implements OnInit {
   ngOnInit() {
   }
 
+  deletePost(id: string): void {
+    const confirmation = confirm(`Do you wanna delete post [${id}] ?`);
+    if (confirmation) {
+        this.postService.deletePost(id);
+    }
+  }
 }

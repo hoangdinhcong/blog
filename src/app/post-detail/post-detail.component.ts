@@ -3,6 +3,7 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-post-detail',
@@ -17,6 +18,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   private sub: any;
 
   constructor(
+    private location: Location,
     private postService: PostService,
     private route: ActivatedRoute) { }
 
@@ -30,5 +32,9 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

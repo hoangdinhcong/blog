@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-post-crud',
@@ -11,20 +12,60 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PostCrudComponent implements OnInit {
 
-  post: Post = new Post();
-  constructor(private postService: PostService, private router: Router) { }
+  post: Post;
+
+  action: string;
+
+  constructor(
+    private postService: PostService,
+    private location: Location,
+    private router: Router,
+    private route: ActivatedRoute) {
+
+    let key: string;
+    this.route.paramMap.subscribe(params => {
+      key = params.get('id');
+      if (!key) {
+        this.action = 'create';
+        this.post = new Post();
+      } else {
+        this.action = 'update';
+        this.postService.getPost(key).subscribe(post => this.post = post);
+      }
+    });
+  }
 
   ngOnInit() {
+
+  }
+
+  submitPost(form: NgForm): void {
+    if (!this.post.$key) {
+      this.createPost(form);
+    } else {
+      this.updatePost(form);
+    }
+    this.router.navigate(['/']);
   }
 
   createPost(form: NgForm): void {
-    this.post = new Post();
-    this.post.title = form.value.title;
-    this.post.content = form.value.content;
-
     this.postService.createPost(this.post);
-    this.router.navigate(['/']);
+  }
 
+  updatePost(form: NgForm): void {
+    this.postService.updatePost(this.post.$key, this.post);
+  }
+
+  deletePost(id: string): void {
+    const confirmation = confirm(`Do you wanna delete post [${id}] ?`);
+    if (confirmation) {
+        this.postService.deletePost(id);
+        this.router.navigate(['/']);
+    }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

@@ -1,4 +1,4 @@
-<form #createPostForm="ngForm" (ngSubmit)="createPost(createPostForm) ">
+<form #createPostForm="ngForm" (ngSubmit)="submitPost(createPostForm) " *ngIf="post">
   <div class="form-group">
     <label for="title">Title</label>
     <input class="form-control" type="text" name="title" id="title" minlength="2" [(ngModel)]="post.title" #title='ngModel' required>
@@ -10,5 +10,11 @@
       #content='ngModel' required></textarea>
     <small *ngIf="title.dirty" [class.invisible]="content.valid" class="form-text text-danger">invalid content.</small>
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!title.valid || !content.valid">Create</button>
-</form>  
+
+  <button type="button" class="btn" (click)="goBack()">Back</button>
+  <div class="float-right">
+    <button *ngIf="action == 'create'" type="submit" class="btn btn-primary" [disabled]="!title.valid || !content.valid">Create</button>
+    <button *ngIf="action == 'update'" type="submit" class="btn btn-info" [disabled]="!title.valid || !content.valid">Update</button>
+    <button *ngIf="action == 'update'" (click)="deletePost(post.$key)" class="btn btn-danger" [disabled]="!title.valid || !content.valid">Delete</button>
+  </div>
+</form>

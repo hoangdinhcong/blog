@@ -31,7 +31,8 @@ export class PostService implements IPostService {
         this.posts.update(key, value).catch(error => this.handleError(error));
     }
     deletePost(key: string): void {
-        throw new Error('Method not implemented.');
+        const itemPath = `${this.basePath}/${key}`;
+        this.db.object(itemPath).remove();
     }
     deleteAll(): void {
         this.posts.remove().catch(error => this.handleError(error));
