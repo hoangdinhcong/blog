@@ -1,5 +1,5 @@
 <div class="post-preview" *ngFor="let post of posts | async">
-  <a href="{{ post.url }}">
+  <a [routerLink]="['/post', post.$key]"> 
     <h3 class="post-title">
       {{ post.title }}
     </h3>

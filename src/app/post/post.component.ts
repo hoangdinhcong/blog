@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { PostService } from '../../services/post.service';
+import { Post } from '../../models/post';
 
 @Component({
   selector: 'app-post',
@@ -9,7 +10,7 @@ import { PostService } from '../../services/post.service';
 })
 export class PostComponent implements OnInit {
 
-  posts: FirebaseListObservable<any[]>;
+  posts: FirebaseListObservable<Post[]>;
   constructor(private postService: PostService) {
     this.posts = postService.getPosts();
   }

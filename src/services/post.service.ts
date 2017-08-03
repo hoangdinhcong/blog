@@ -12,7 +12,7 @@ export class PostService implements IPostService {
     post: FirebaseObjectObservable<Post> = null; //   single object
 
     constructor(private db: AngularFireDatabase) {
-
+        this.getPosts();
     }
 
     getPosts(query = {}): FirebaseListObservable<Post[]> {
