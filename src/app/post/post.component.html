@@ -1,0 +1,8 @@
+<div class="post-preview" *ngFor="let item of items | async">
+  <a href="{{ item.url }}">
+    <h3 class="post-title">
+      {{ item.title }}
+    </h3>
+  </a>
+  <p> {{ item.content }}</p>
+</div>
