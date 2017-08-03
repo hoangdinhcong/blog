@@ -5,6 +5,8 @@ import { firebaseConfig } from '../environments/firebase.config';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+import { PostService } from '../services/post.service';
+
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
 
@@ -18,7 +20,9 @@ import { PostComponent } from './post/post.component';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
