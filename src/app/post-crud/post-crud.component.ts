@@ -4,6 +4,7 @@ import { PostService } from '../../services/post.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Editor } from 'primeng/components/editor/editor';
 
 @Component({
   selector: 'app-post-crud',
@@ -15,6 +16,8 @@ export class PostCrudComponent implements OnInit {
   post: Post;
 
   action: string;
+
+  text: string;
 
   constructor(
     private postService: PostService,

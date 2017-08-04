@@ -10,6 +10,9 @@
       #content='ngModel' required></textarea>
     <small *ngIf="title.dirty" [class.invisible]="content.valid" class="form-text text-danger">invalid content.</small>
   </div>
+  <div class="form-group">
+    <p-editor [(ngModel)]="post.content" [style]="{'height':'320px'}" [ngModelOptions]="{standalone: true}"></p-editor>
+  </div>
 
   <button type="button" class="btn" (click)="goBack()">Back</button>
   <div class="float-right">

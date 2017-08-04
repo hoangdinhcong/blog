@@ -11,6 +11,8 @@ import { PostService } from '../services/post.service';
 
 import { routing } from './app.routes';
 
+import { EditorModule } from 'primeng/primeng';
+
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
@@ -28,7 +30,8 @@ import { PostCrudComponent } from './post-crud/post-crud.component';
     FormsModule,
     routing,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    EditorModule
   ],
   providers: [
     PostService

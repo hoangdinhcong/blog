@@ -4,5 +4,5 @@
   <h3 class="post-title">
     {{ post.title }}
   </h3>
-  <p> {{ post.content }}</p>
+  <div [innerHTML]="post.content"></div>
 </div>
