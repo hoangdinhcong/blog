@@ -1,17 +1,18 @@
 <form #createPostForm="ngForm" (ngSubmit)="submitPost(createPostForm) " *ngIf="post">
   <div class="form-group">
-    <label for="title">Title</label>
+    <label for="title"><em><strong>Title</strong></em></label>
     <input class="form-control" type="text" name="title" id="title" minlength="2" [(ngModel)]="post.title" #title='ngModel' required>
-    <small *ngIf="content.dirty" [class.invisible]="title.valid" class="form-text text-danger">invalid title.</small>
+    <small *ngIf="title.dirty" [class.invisible]="title.valid" class="form-text text-danger">invalid title.</small>
   </div>
   <div class="form-group">
-    <label for="content">Content</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3" name="content" id="content" minlength="2" [(ngModel)]="post.content"
-      #content='ngModel' required></textarea>
-    <small *ngIf="title.dirty" [class.invisible]="content.valid" class="form-text text-danger">invalid content.</small>
+    <label for="content"><em><strong>Content</strong></em></label>
+    <p-editor [(ngModel)]="post.content" [style]="{'height':'320px'}" [ngModelOptions]="{standalone: true}" #content='ngModel' required></p-editor>
+      <!-- <textarea class="form-control" rows="3" name="content" id="content" minlength="10" [(ngModel)]="post.content"
+      #content='ngModel' required></textarea>   -->
+    <small *ngIf="content.dirty" [class.invisible]="content.valid" class="form-text text-danger">invalid content.</small>
   </div>
   <div class="form-group">
-    <p-editor [(ngModel)]="post.content" [style]="{'height':'320px'}" [ngModelOptions]="{standalone: true}"></p-editor>
+
   </div>
 
   <button type="button" class="btn" (click)="goBack()">Back</button>
