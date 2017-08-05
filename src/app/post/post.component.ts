@@ -14,14 +14,13 @@ export class PostComponent implements OnInit {
   constructor(private postService: PostService) {
     this.posts = postService.getPosts();
   }
-
   ngOnInit() {
   }
 
   deletePost(id: string): void {
     const confirmation = confirm(`Do you wanna delete post [${id}] ?`);
     if (confirmation) {
-        this.postService.deletePost(id);
+      this.postService.deletePost(id);
     }
   }
 }
