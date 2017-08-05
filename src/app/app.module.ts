@@ -16,6 +16,7 @@ import { EditorModule } from 'primeng/components/editor/editor';
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { PostCrudComponent } from './post-crud/post-crud.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 
     PostComponent,
     PostDetailComponent,
+    PostCrudComponent,
   ],
   imports: [
     BrowserModule,
