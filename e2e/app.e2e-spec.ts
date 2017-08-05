@@ -1,10 +1,10 @@
-import { LoecvPage } from './app.po';
+import { TestAngularCliPage } from './app.po';
 
-describe('loecv App', () => {
-  let page: LoecvPage;
+describe('test-angular-cli App', () => {
+  let page: TestAngularCliPage;
 
   beforeEach(() => {
-    page = new LoecvPage();
+    page = new TestAngularCliPage();
   });
 
   it('should display welcome message', () => {

@@ -1,0 +1,8 @@
+<p><a href="javascript:void(0)" (click)="goBack()">back</a></p>
+
+<div *ngIf="post">
+  <h3 class="post-title">
+    {{ post.title }}
+  </h3>
+  <div [innerHTML]="post.content"></div>
+</div>

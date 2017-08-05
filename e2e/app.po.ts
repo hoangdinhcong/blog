@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class LoecvPage {
+export class TestAngularCliPage {
   navigateTo() {
     return browser.get('/');
   }
