@@ -18,7 +18,7 @@ export class PostComponent implements OnInit {
   }
 
   deletePost(id: string): void {
-    const confirmation = confirm(`Do you wanna delete post [${id}] ?`);
+    const confirmation = confirm(`Do you want to delete post [${id}] ?`);
     if (confirmation) {
       this.postService.deletePost(id);
     }
