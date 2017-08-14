@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Post } from '../models/post';
-import { IPostService } from '../interfaces/services/IPostService';
 
 @Injectable()
-export class PostService implements IPostService {
+export class PostService {
 
     private basePath = '/posts';
 

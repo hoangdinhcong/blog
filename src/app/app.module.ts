@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { PostService } from '../services/post.service';
+import { TagService } from '../services/tag.service';
 
 import { routing } from './app.routes';
 
@@ -17,6 +18,7 @@ import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostCrudComponent } from './post-crud/post-crud.component';
+import { TagCrudComponent } from './tag-crud/tag-crud.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { PostCrudComponent } from './post-crud/post-crud.component';
     PostComponent,
     PostDetailComponent,
     PostCrudComponent,
+    TagCrudComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { PostCrudComponent } from './post-crud/post-crud.component';
     AngularFireDatabaseModule,
   ],
   providers: [
-    PostService
+    PostService,
+    TagService
   ],
   bootstrap: [AppComponent]
 })
