@@ -13,6 +13,7 @@ import { TagService } from '../services/tag.service';
 import { routing } from './app.routes';
 
 import { EditorModule } from 'primeng/components/editor/editor';
+import { MultiSelectModule } from 'primeng/components/multiselect/multiselect';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -33,7 +34,10 @@ import { TagCrudComponent } from './tag-crud/tag-crud.component';
     BrowserModule,
     FormsModule,
     routing,
+
     EditorModule,
+    MultiSelectModule,
+
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
   ],

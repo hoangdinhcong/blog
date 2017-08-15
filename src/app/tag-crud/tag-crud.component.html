@@ -1,3 +1,6 @@
 <p>
   tag-crud works!
 </p>
+<div *ngFor="let tag of tags | async">
+  <p>{{ tag.$key }} - {{ tag.name }}</p>
+</div>

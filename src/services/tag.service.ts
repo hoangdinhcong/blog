@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
-import { Post } from '../models/post';
+import { Tag } from '../models/Tag';
 
 @Injectable()
 export class TagService {
 
     private basePath = '/tags';
 
-    tags: FirebaseListObservable<Post[]> = null; //  list of objects
-    tag: FirebaseObjectObservable<Post> = null; //   single object
+    tags: FirebaseListObservable<Tag[]> = null; //  list of objects
+    tag: FirebaseObjectObservable<Tag> = null; //   single object
 
     constructor(private db: AngularFireDatabase) {
         this.getTags();
     }
 
-    getTags(query = {}): FirebaseListObservable<Post[]> {
+    getTags(query = {}): FirebaseListObservable<Tag[]> {
         this.tags = this.db.list(this.basePath, { query: query });
         return this.tags;
     }
-    getTag(key: string): FirebaseObjectObservable<Post> {
+    getTag(key: string): FirebaseObjectObservable<Tag> {
         const itemPath = `${this.basePath}/${key}`;
         this.tag = this.db.object(itemPath);
         return this.tag;
     }
-    createTag(post: Post): void {
-        this.tags.push(post).catch(error => this.handleError(error));
+    createTag(Tag: Tag): void {
+        this.tags.push(Tag).catch(error => this.handleError(error));
     }
     updateTag(key: string, value: any): void {
         this.tags.update(key, value).catch(error => this.handleError(error));

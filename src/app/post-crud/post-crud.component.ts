@@ -4,7 +4,13 @@ import { PostService } from '../../services/post.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
 import { Editor } from 'primeng/components/editor/editor';
+import { MultiSelect } from 'primeng/components/multiselect/multiselect';
+import { SelectItem } from 'primeng/primeng';
+import { Tag } from '../../models/tag';
+import { FirebaseListObservable } from 'angularfire2/database';
+import { TagService } from '../../services/tag.service';
 
 @Component({
   selector: 'app-post-crud',
@@ -15,12 +21,12 @@ export class PostCrudComponent implements OnInit {
 
   post: Post;
 
-  action: string;
-
-  text: string;
+  tags: FirebaseListObservable<Tag[]>;
+  multiSelectTags: SelectItem[] = [];
 
   constructor(
     private postService: PostService,
+    private tagService: TagService,
     private location: Location,
     private router: Router,
     private route: ActivatedRoute) {
@@ -29,17 +35,19 @@ export class PostCrudComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       key = params.get('id');
       if (!key) {
-        this.action = 'create';
         this.post = new Post();
       } else {
-        this.action = 'update';
         this.postService.getPost(key).subscribe(post => this.post = post);
       }
     });
   }
 
   ngOnInit() {
-
+    this.tagService.getTags().subscribe((tags: Tag[]) => {
+      for (let tag of tags) {
+        this.multiSelectTags.push({ label: `${tag.name}`, value: `${tag.$key}` });
+      }
+    });
   }
 
   submitPost(form: NgForm): void {
@@ -62,8 +70,8 @@ export class PostCrudComponent implements OnInit {
   deletePost(id: string): void {
     const confirmation = confirm(`Do you wanna delete post [${id}] ?`);
     if (confirmation) {
-        this.postService.deletePost(id);
-        this.router.navigate(['/']);
+      this.postService.deletePost(id);
+      this.router.navigate(['/']);
     }
   }
 

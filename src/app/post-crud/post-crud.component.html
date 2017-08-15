@@ -1,24 +1,39 @@
 <form #createPostForm="ngForm" (ngSubmit)="submitPost(createPostForm) " *ngIf="post">
+  {{post | json}}
+  <!-- Title  -->
   <div class="form-group">
     <label for="title"><em><strong>Title</strong></em></label>
     <input class="form-control" type="text" name="title" id="title" minlength="2" [(ngModel)]="post.title" #title='ngModel' required>
     <small *ngIf="title.dirty" [class.invisible]="title.valid" class="form-text text-danger">invalid title.</small>
   </div>
+
+  <!-- Tag  -->
+  <div class="form-group">
+    <label for="tag"><em><strong>Tag</strong></em></label>
+    <div>
+      <p-multiSelect [options]="multiSelectTags" [(ngModel)]="post.tags" [ngModelOptions]="{standalone: true}"></p-multiSelect>
+    </div>
+  </div>
+
+  <!-- Short Content  -->
+  <div class="form-group">
+    <label for="shortContent"><em><strong>Short Content</strong></em></label>
+    <textarea class="form-control" rows="3" name="shortContent" id="shortContent" minlength="10" [(ngModel)]="post.shortContent"
+      #shortContent='ngModel' required></textarea>
+    <small *ngIf="shortContent.dirty" [class.invisible]="shortContent.valid" class="form-text text-danger">invalid short content.</small>
+  </div>
+  <!-- Content  -->
   <div class="form-group">
     <label for="content"><em><strong>Content</strong></em></label>
-    <p-editor [(ngModel)]="post.content" [style]="{'height':'320px'}" [ngModelOptions]="{standalone: true}" #content='ngModel' required></p-editor>
-      <!-- <textarea class="form-control" rows="3" name="content" id="content" minlength="10" [(ngModel)]="post.content"
-      #content='ngModel' required></textarea>   -->
+    <p-editor [(ngModel)]="post.content" [style]="{'height':'320px'}" [ngModelOptions]="{standalone: true}" #content='ngModel'
+      required></p-editor>
     <small *ngIf="content.dirty" [class.invisible]="content.valid" class="form-text text-danger">invalid content.</small>
   </div>
-  <div class="form-group">
 
-  </div>
 
   <button type="button" class="btn" (click)="goBack()">Back</button>
   <div class="float-right">
-    <button *ngIf="action == 'create'" type="submit" class="btn btn-primary" [disabled]="!title.valid || !content.valid">Create</button>
-    <button *ngIf="action == 'update'" type="submit" class="btn btn-info" [disabled]="!title.valid || !content.valid">Update</button>
-    <button *ngIf="action == 'update'" (click)="deletePost(post.$key)" class="btn btn-danger" [disabled]="!title.valid || !content.valid">Delete</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!title.valid || !content.valid">Save</button>
+    <button *ngIf="post.$key" (click)="deletePost(post.$key)" class="btn btn-danger" [disabled]="!title.valid || !content.valid">Delete</button>
   </div>
 </form>

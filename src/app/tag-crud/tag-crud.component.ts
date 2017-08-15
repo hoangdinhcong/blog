@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Tag } from '../../models/tag';
+import { FirebaseListObservable } from 'angularfire2/database';
+import { TagService } from '../../services/tag.service';
 
 @Component({
   selector: 'app-tag-crud',
@@ -7,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TagCrudComponent implements OnInit {
 
-  constructor() { }
+  tags: FirebaseListObservable<Tag[]>;
+  constructor(private tagService: TagService) {
+    this.tags = tagService.getTags();
+  }
 
   ngOnInit() {
   }

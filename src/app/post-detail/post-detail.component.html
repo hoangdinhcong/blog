@@ -4,5 +4,6 @@
   <h3 class="post-title">
     {{ post.title }}
   </h3>
+  <span *ngFor="let tag of post.tags" class="badge badge-info">{{tag}}</span>
   <div [innerHTML]="post.content"></div>
 </div>
